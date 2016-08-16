@@ -37,7 +37,7 @@
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGFloat leftMargin = 10;
+    CGFloat leftMargin = RulerViewLeftMargin;
     CGFloat topMargin = 0;
     CGFloat height = CGRectGetHeight(self.frame);
     CGFloat width = CGRectGetWidth(self.frame);

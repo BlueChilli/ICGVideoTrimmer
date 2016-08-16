@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+static const CGFloat RulerViewLeftMargin = 10.0f;
+
 @interface ICGRulerView : UIView
 
 @property (assign, nonatomic) CGFloat widthPerSecond;

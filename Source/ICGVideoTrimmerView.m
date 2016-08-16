@@ -126,8 +126,9 @@
     
     [self addFrames];
     
-    if (self.showsRulerView) {
-        CGRect rulerFrame = CGRectMake(0, CGRectGetHeight(self.contentView.frame)*0.7, CGRectGetWidth(self.contentView.frame)+self.thumbWidth, CGRectGetHeight(self.contentView.frame)*0.3);
+    if (self.showsRulerView)
+	{
+        CGRect rulerFrame = CGRectMake(self.thumbWidth-RulerViewLeftMargin, CGRectGetHeight(self.contentView.frame)*0.7, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame)*0.3);
         ICGRulerView *rulerView = [[ICGRulerView alloc] initWithFrame:rulerFrame widthPerSecond:self.widthPerSecond themeColor:self.themeColor];
         [self.contentView addSubview:rulerView];
     }

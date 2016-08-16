@@ -91,7 +91,8 @@
     [self.trimmerView setShowsRulerView:YES];
     [self.trimmerView setTrackerColor:[UIColor cyanColor]];
     [self.trimmerView setDelegate:self];
-    
+    [self.trimmerView setThumbWidth:20];
+
     // important: reset subviews
     [self.trimmerView resetSubviews];
     
