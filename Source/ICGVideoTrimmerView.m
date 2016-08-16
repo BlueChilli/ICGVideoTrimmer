@@ -35,6 +35,8 @@
 @property (nonatomic) CGPoint rightStartPoint;
 @property (nonatomic) CGFloat overlayWidth;
 
+@property (nonatomic) CGFloat prevTrackerTime;
+
 @end
 
 @implementation ICGVideoTrimmerView
@@ -267,13 +269,27 @@
 }
 
 - (void)seekToTime:(CGFloat) time
-{    
-    CGFloat posToMove = time * self.widthPerSecond + self.thumbWidth - self.scrollView.contentOffset.x;
-    
-    CGRect trackerFrame = self.trackerView.frame;
-    trackerFrame.origin.x = posToMove;
-    self.trackerView.frame = trackerFrame;
-    
+{
+	CGFloat duration = (CGFloat) fabs(_prevTrackerTime - time);
+	BOOL animate = duration <= 1;
+	_prevTrackerTime = time;
+
+	CGFloat posToMove = time * self.widthPerSecond + self.thumbWidth - self.scrollView.contentOffset.x;
+
+	CGRect trackerFrame = self.trackerView.frame;
+	trackerFrame.origin.x = posToMove;
+
+	if (animate)
+	{
+		[UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveLinear|UIViewAnimationOptionBeginFromCurrentState animations:^{
+			self.trackerView.frame = trackerFrame;
+		} completion:nil ];
+	}
+	else
+	{
+		self.trackerView.frame = trackerFrame;
+	}
+
 }
 
 - (void)hideTracker:(BOOL)flag
