@@ -332,7 +332,12 @@
     [self.frameView setFrame:CGRectMake(self.thumbWidth, 0, frameViewFrameWidth, CGRectGetHeight(self.frameView.frame))];
     CGFloat contentViewFrameWidth = CMTimeGetSeconds([self.asset duration]) <= self.maxLength + 0.5 ? screenWidth + 30 : frameViewFrameWidth;
     [self.contentView setFrame:CGRectMake(0, 0, contentViewFrameWidth, CGRectGetHeight(self.contentView.frame))];
-    [self.scrollView setContentSize:self.contentView.frame.size];
+
+
+    CGSize size = CGSizeMake(self.contentView.frame.size.width+self.thumbWidth*2, self.contentView.frame.size.height);
+    [self.scrollView setContentSize:size];
+
+
     NSInteger minFramesNeeded = screenWidth / picWidth + 1;
     actualFramesNeeded =  (duration / self.maxLength) * minFramesNeeded + 1;
     
